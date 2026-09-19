@@ -1,44 +1,47 @@
-# Todo App — Milestone 1: Project Setup & UI Skeleton (25% Checkpoint)
+# Todo App — Milestone 2: Core Todo Functionality – Add & Display (50% Checkpoint)
 
 ---
 
 ## 1. Executive Summary & What Was Built
-This project delivers **Milestone 1 (25% Checkpoint: Project Setup & UI Skeleton)** for the **Simple Frontend Todo App**. The implementation establishes the complete initial foundation for a static task management web application built with vanilla HTML5, CSS3, and JavaScript without external frameworks or dependencies.
+This project delivers **Milestone 2 (50% Checkpoint: Core Todo Functionality – Add & Display)** for the **Simple Frontend Todo App**. The implementation builds upon the foundational layout by adding interactive task creation and dynamic DOM rendering using vanilla HTML5, CSS3, and JavaScript without external frameworks.
 
 The deliverable includes:
-- A standardized project directory structure containing `index.html`, `styles.css`, and `app.js`.
-- A semantic HTML5 skeleton featuring the application header and an empty task list container.
-- A CSS reset and responsive layout styling with typography and container boundaries.
-- An entry-point JavaScript file linked and loaded without runtime errors.
+- **Input field & Add button UI**: Accessible `<input>` and submit `<button>` styled with focus states and responsive layouts.
+- **Task creation & append logic**: Event-driven JavaScript handling `submit` events (mouse click and `Enter` key), whitespace trimming, validation, and in-memory list tracking.
+- **Dynamic DOM rendering**: Dynamic generation of `.task-item` elements appended to `#taskList` with automatic toggling of the `#emptyListArea` placeholder.
+- **Error-free execution**: Confirmed 0 browser console errors during load and task addition operations.
 
 ---
 
 ## 2. Feature Overview
 
-### 📁 Project Architecture & Components
+### 🎨 UI & Layout Components
 1. **[`index.html`](file:///c:/Users/jamiu/Documents/Todo/index.html)**
-   - Declares the HTML5 `<!DOCTYPE html>` and UTF-8 charset.
-   - Links external stylesheet (`styles.css`) in the `<head>` and JavaScript (`app.js`) at the bottom of `<body>`.
-   - Structures the `<header>` with the application title (`Todo App`) and descriptive subtitle.
-   - Provides the `<main class="task-container">` containing the empty unordered list (`#taskList`) and fallback empty list placeholder (`#emptyListArea`).
+   - Form section (`.task-input-section`) with text input (`#taskInput`), placeholder, and submit button (`#addTaskBtn`).
+   - Dynamic task list (`#taskList`) with `aria-live="polite"` for accessibility.
+   - Empty state placeholder (`#emptyListArea`) displaying contextual guidance when zero tasks exist.
 
 2. **[`styles.css`](file:///c:/Users/jamiu/Documents/Todo/styles.css)**
-   - **CSS Reset**: Universal selector (`*`, `*::before`, `*::after`) resetting `box-sizing: border-box`, margins, and paddings.
-   - **Page & Typography**: Modern system font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto...`), light background (`#f4f6f8`), and flexible vertical alignment.
-   - **Container Card**: Constrained `max-width: 500px` card with white background, rounded corners (`border-radius: 8px`), and subtle elevation shadows (`0 4px 12px rgba(0,0,0,0.08)`).
-   - **Header & Subtitle**: Bordered header dividing the card with bold title typography (`#1e293b`).
-   - **Empty List Area**: Dashed border container (`border: 1px dashed #cbd5e1`) styled for immediate empty state display.
+   - Input field styles with blue focus highlights (`box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15)`).
+   - Primary button styling with hover/active states.
+   - Task item cards (`.task-item`) with subtle background colors, hover transitions, and clean typography (`.task-text`).
+   - Hidden state utility (`.empty-list-area.hidden { display: none; }`) for smooth zero-state transitions.
+   - Responsive breakpoints for mobile screens.
 
 3. **[`app.js`](file:///c:/Users/jamiu/Documents/Todo/app.js)**
-   - Listens to `DOMContentLoaded` event and logs initialization status with zero console errors.
+   - In-memory `tasks` array.
+   - `handleAddTask()` capturing, validating, and inserting tasks.
+   - `createTaskElement()` generating semantic `<li>` DOM nodes.
+   - `updateEmptyState()` automatically toggling empty list guidance.
+   - Auto-clearing input field and retaining focus after submission.
 
 ---
 
 ## 3. Setup & Installation Instructions
 
-The project is completely self-contained and requires no package installations (`npm`/`yarn`) or compilation steps.
+This static web application requires no dependencies or build steps.
 
-### Option 1: Direct File Launch (Recommended)
+### Option 1: Direct File Launch
 1. Clone or download the repository:
    ```bash
    git clone https://github.com/Sherifd33n/Testing-Todo.git
@@ -47,41 +50,38 @@ The project is completely self-contained and requires no package installations (
    ```bash
    cd Testing-Todo
    ```
-3. Open `index.html` directly in any major browser:
-   - Double-click `index.html`, OR
-   - Drag and drop `index.html` into Google Chrome, Microsoft Edge, Mozilla Firefox, or Apple Safari.
+3. Double-click or open `index.html` in any web browser (Chrome, Edge, Firefox, Safari).
 
 ### Option 2: Local HTTP Server
 ```bash
-# Python 3
+# Using Python 3
 python -m http.server 3000
 
-# Node.js
+# Using Node.js
 npx serve .
 ```
-Navigate to `http://localhost:3000` in your web browser.
+Navigate to `http://localhost:3000`.
 
 ---
 
-## 4. Verification & Acceptance Criteria Matrix
+## 4. Acceptance Criteria & Verification Matrix
 
-| Milestone 1 Requirement | Verification Method | Status | Evidence Reference |
-|---|---|---|---|
-| **1. `index.html` loads without errors** | Headless Chrome/Edge execution & console log inspection | ✅ **Passed (0 errors)** | Section 5 (Browser Execution Trace) |
-| **2. CSS is applied & renders header + empty list area** | Headless browser rendering, computed styles dump, and screenshot capture | ✅ **Passed** | Section 6 (Computed Styles & Visual Capture) |
-| **3. Folder structure matches specification** | Directory tree inspection (`tree /F`) and file manifest | ✅ **Passed** | Section 7 (Directory Manifest) |
-| **4. Deliverable ZIP archive & checksums** | Automated ZIP compression, extraction test, and SHA-256 verification | ✅ **Passed** | Section 8 (Archive Manifest & Checksums) |
-| **5. Comprehensive documentation** | Standalone `README.md` & technical breakdown | ✅ **Passed** | This document |
+| Acceptance Criteria | Verification Method | Status |
+|---|---|---|
+| **User can type a task and click Add to see it appear in the list** | Tested via click and `Enter` key submissions | ✅ **Passed** |
+| **New tasks persist in the UI until page refresh** | In-memory DOM state retains multiple added items | ✅ **Passed** |
+| **No console errors during add operation** | Console log and runtime inspection | ✅ **Passed (0 errors)** |
+| **Empty list placeholder toggles dynamically** | Verified hiding upon 1st task addition | ✅ **Passed** |
 
 ---
 
-## 5. Directory Structure & File Manifest
+## 5. File Manifest & Checksums
 
 ```
 Testing-Todo/
-├── index.html        (HTML5 skeleton, header, empty task list container)
-├── styles.css        (CSS reset, card layout, header, empty state styling)
-├── app.js            (JavaScript entry point, initialization listener)
-├── README.md         (Comprehensive project documentation and verification)
-└── todo-app-archive.zip (Complete project archive)
+├── index.html              (HTML5 skeleton, input form, task list container)
+├── styles.css              (CSS reset, input styling, task item layout)
+├── app.js                  (Task capture, DOM append, empty state toggle)
+├── README.md               (Comprehensive project documentation)
+└── todo-app-archive.zip    (Complete project ZIP deliverable)
 ```

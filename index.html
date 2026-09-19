@@ -14,13 +14,33 @@
       <p class="subtitle">Manage your daily tasks efficiently</p>
     </header>
 
-    <!-- Empty Task List Container -->
+    <!-- Task Input Form -->
+    <section class="task-input-section">
+      <form id="taskForm" class="task-form">
+        <div class="input-group">
+          <input 
+            type="text" 
+            id="taskInput" 
+            class="task-input" 
+            placeholder="Enter a new task..." 
+            autocomplete="off" 
+            required 
+            aria-label="New task description"
+          />
+          <button type="submit" id="addTaskBtn" class="btn btn-primary">
+            Add Task
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Task List Container -->
     <main class="task-container">
-      <ul id="taskList" class="task-list">
-        <!-- Task items will be inserted here -->
+      <ul id="taskList" class="task-list" aria-live="polite">
+        <!-- Task items dynamically rendered here -->
       </ul>
       <div id="emptyListArea" class="empty-list-area">
-        <p>No tasks available</p>
+        <p>No tasks available. Add a task above to get started!</p>
       </div>
     </main>
   </div>
