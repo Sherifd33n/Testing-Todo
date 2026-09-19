@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Flow - Task Management</title>
+  <meta name="description" content="A clean, responsive task manager with multi-tab organization and quick toggling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-area">
+          <div class="logo-icon">✓</div>
+          <div>
+            <h1>TaskFlow</h1>
+            <p class="subtitle">Organize your day with ease</p>
+          </div>
+        </div>
+        <div class="header-badge" id="headerSummaryBadge">0 Tasks</div>
+      </div>
+    </header>
+
+    <!-- Task Creation Form -->
+    <section class="task-input-section">
+      <form id="taskForm" class="task-form">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="taskInput" 
+            class="task-input" 
+            placeholder="What needs to be done?" 
+            autocomplete="off"
+            required
+            aria-label="New task description"
+          />
+          <button type="submit" id="addTaskBtn" class="btn btn-primary" aria-label="Add task">
+            <span class="btn-icon">+</span>
+            <span>Add Task</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav" aria-label="Task status filters">
+      <div class="tabs-list" role="tablist">
+        <button 
+          role="tab" 
+          aria-selected="true" 
+          aria-controls="taskListPanel" 
+          id="tab-all" 
+          class="tab-btn active" 
+          data-tab="all"
+        >
+          <span>All</span>
+          <span class="badge" id="badgeAll">0</span>
+        </button>
+
+        <button 
+          role="tab" 
+          aria-selected="false" 
+          aria-controls="taskListPanel" 
+          id="tab-active" 
+          class="tab-btn" 
+          data-tab="active"
+        >
+          <span>Active</span>
+          <span class="badge" id="badgeActive">0</span>
+        </button>
+
+        <button 
+          role="tab" 
+          aria-selected="false" 
+          aria-controls="taskListPanel" 
+          id="tab-completed" 
+          class="tab-btn" 
+          data-tab="completed"
+        >
+          <span>Completed</span>
+          <span class="badge" id="badgeCompleted">0</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Task List Panel -->
+    <main class="task-content" id="taskListPanel" role="tabpanel">
+      <ul id="taskList" class="task-list" aria-live="polite">
+        <!-- Tasks rendered dynamically via JS -->
+      </ul>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">📝</div>
+        <h3 id="emptyTitle">No tasks yet</h3>
+        <p id="emptySubtitle">Add your first task above to get started!</p>
+      </div>
+    </main>
+
+    <!-- Quick Footer / Statistics -->
+    <footer class="app-footer">
+      <span id="activeCountText">0 items left</span>
+      <button type="button" id="clearCompletedBtn" class="clear-btn" style="display: none;">
+        Clear completed
+      </button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
